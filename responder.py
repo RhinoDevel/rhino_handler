@@ -1,7 +1,6 @@
 
 # Marcel Timm, RhinoDevel, 2022jul17
 
-import os.path
 import importlib
 import importlib.util
 import intents
