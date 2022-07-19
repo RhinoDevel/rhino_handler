@@ -13,11 +13,15 @@
 #   docker exec -it rhasspy bash
 
 import json
+import os
 import sys
 
 import responder
 
+# Will be saved to root folder inside docker container (is that OK?):
+#
 FILE_LAST_RESPONSE = 'last_response.txt'
+FILE_RUNS_LOCK     = 'rhino_handler.lock'
 
 def send_output(s):
     """Send the output of this intent handler."""
@@ -85,9 +89,21 @@ def retrieve_input():
 
     return sys.stdin.read()
 
-def main():
-    # TODO: Make this thread-safe/atomic!
+def try_lock_running():
+    """Tries to set is-running-lock. Returns, if successful or not."""
 
+    try:
+        with open(FILE_RUNS_LOCK, 'x'):
+            return True
+    except:
+        return False # File seems to already exist.
+
+def unlock_running():
+    """Unlocks the is-running-lock."""
+
+    os.remove(FILE_RUNS_LOCK)
+
+def exec():
     input_str = retrieve_input()
     obj = get_obj(input_str)
     intent = get_intent(obj)
@@ -100,6 +116,17 @@ def main():
 
     save_last_response(response)
 
-    send_output(output_str)    
+    send_output(output_str)
+
+def main():
+    if not try_lock_running():
+        return # No return value at all. Is this OK?
+
+    try:
+        exec()
+    except:
+        pass # Maybe not return value at all. Is this OK?
+
+    unlock_running()
 
 main()
