@@ -4,7 +4,8 @@
 from datetime import datetime
 import random
 
-# Locale does not seem to be changeable (seems to be a Rhasspy / docker problem..):
+# Locale does not seem to be changeable (seems to be a Rhasspy / docker
+# problem..):
 #
 DE_WEEKDAYS = [
         'Montag',
