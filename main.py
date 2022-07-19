@@ -125,7 +125,7 @@ def main():
     try:
         exec()
     except:
-        pass # Maybe not return value at all. Is this OK?
+        pass # Maybe no return value at all. Is this OK?
 
     unlock_running()
 
