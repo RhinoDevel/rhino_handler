@@ -1,3 +1,4 @@
+#!/usr/bin/python
 
 # Marcel Timm, RhinoDevel, 2022jul23
 
@@ -5,7 +6,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 import responder_rhasspy
 
-ADDR = '127.0.0.1' # Do not use this non-locally (no security stuff at all).
+ADDR = '127.0.0.1' # Use this in an intranet, only (no security stuff at all).
 PORT = 7581
 
 class MtHttpHandler(BaseHTTPRequestHandler):
@@ -23,6 +24,10 @@ class MtHttpHandler(BaseHTTPRequestHandler):
         self._set_headers()
         self.wfile.write(response_body.encode('utf8'))
 
-httpd = HTTPServer((ADDR, PORT), MtHttpHandler)
+def exec():
+    httpd = HTTPServer((ADDR, PORT), MtHttpHandler)
 
-httpd.serve_forever()
+    httpd.serve_forever()
+
+if __name__ == "__main__":
+    exec()
