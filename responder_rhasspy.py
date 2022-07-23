@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 # Marcel Timm, RhinoDevel, 2022jul16
 
