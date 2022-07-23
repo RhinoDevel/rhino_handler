@@ -1,0 +1,23 @@
+sudo systemctl edit --force --full rhino_handler.service
+
+=>
+
+[Unit]
+Description=RhinoDevel handler HTTP server for Rhasspy
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/rhino_handler
+ExecStart=/home/pi/rhino_handler/http_server.py
+
+[Install]
+WantedBy=multi-user.target
+
+---
+
+sudo systemctl enable rhino_handler.service
+
+sudo systemctl start rhino_handler.service
