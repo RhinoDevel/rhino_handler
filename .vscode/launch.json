@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: main.py",
+            "name": "Python: responder_rhasspy.py",
             "type": "python",
             "request": "launch",
-            "program": "main.py",
+            "program": "responder_rhasspy.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": ["<", "mt_input.json"]
