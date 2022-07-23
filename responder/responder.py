@@ -12,9 +12,6 @@ ERR_MSG_ON_EXCEPTION = 'Entschuldigung, es ist ein Ausnahmefehler aufgetreten.'
 
 FILE_LAST_RESPONSE = 'last_response.txt'
 FILE_RUNS_LOCK     = 'responder.lock'
-#
-# Will be saved to root folder inside docker container with Rhasspy 2.5.1 (is
-# that OK?).
 
 def try_lock_running():
     """Tries to set is-running-lock. Returns, if successful or not."""
