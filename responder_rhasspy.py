@@ -4,10 +4,6 @@
 
 # *** Some notes ***
 #
-# - Create a gzipped tarball from a folder:
-#
-#   tar cvzf rhino_handler.tar.gz ./rhino_handler
-#
 # - Execute BASH "inside" docker environment:
 #
 #   docker exec -it rhasspy bash
