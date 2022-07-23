@@ -5,7 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: responder_rhasspy.py",
+            "name": "HTTP Server",
+            "type": "python",
+            "request": "launch",
+            "program": "http_server.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [] // ["<", "mt_input.json"]
+        },
+        {
+            "name": "Stdin and -out",
             "type": "python",
             "request": "launch",
             "program": "responder_rhasspy.py",
