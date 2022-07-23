@@ -1,5 +1,1 @@
-{
-    "intent": {
-        "name": "ExternalIP"
-    }
-}
+{"intent":{"name": "ExternalIP"}}
