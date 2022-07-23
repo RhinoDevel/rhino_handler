@@ -39,7 +39,10 @@ def add_response(response, obj):
     obj['speech'] = {'text': response}
 
 def save_last_response(s):
-    """Tries to save the given string to the last response file."""
+    """
+    Tries to save the given string to the last-response file. Nothing happens,
+    if saving fails.
+    """
 
     try:
         with open(FILE_LAST_RESPONSE, 'w') as f:
@@ -103,19 +106,29 @@ def unlock_running():
 
     os.remove(FILE_RUNS_LOCK)
 
-def exec_with_str(input_str):
-    """Get input from parameter (string) and return response as string."""
+def exec_with_obj(obj):
+    """ 
+    Get input from parameter (object) and augment that object with the 
+    response. Also saves that response as last response to a file.
+    """
 
-    obj = get_obj(input_str)
     intent = get_intent(obj)
     params = get_params(obj)
     response = responder.exec(intent, params)
-    ret_val = None
 
     add_response(response, obj)
-    ret_val = get_output(obj)
-
+    
     save_last_response(response)
+
+def exec_with_str(input_str):
+    """Get input from parameter (string) and return response as string."""
+
+    ret_val = None
+    obj = get_obj(input_str)
+
+    exec_with_obj(obj)
+
+    ret_val = get_output(obj)
 
     return ret_val
 
