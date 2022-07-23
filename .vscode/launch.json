@@ -11,7 +11,7 @@
             "program": "http_server.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": [] // ["<", "mt_input.json"]
+            "args": []
         },
         {
             "name": "Stdin and -out",
