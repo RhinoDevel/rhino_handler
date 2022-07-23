@@ -23,20 +23,19 @@ import responder
 FILE_LAST_RESPONSE = 'last_response.txt'
 FILE_RUNS_LOCK     = 'rhino_handler.lock'
 
-def send_output(s):
-    """Send the output of this intent handler."""
+def try_lock_running():
+    """Tries to set is-running-lock. Returns, if successful or not."""
 
-    print(s)
+    try:
+        with open(FILE_RUNS_LOCK, 'x'):
+            return True
+    except:
+        return False # File seems to already exist.
 
-def get_output(obj):
-    """Create and return the output string of this handler from given object."""
+def unlock_running():
+    """Unlocks the is-running-lock."""
 
-    return json.dumps(obj)
-
-def add_response(response, obj):
-    """Add the response given to the input/output object that is also given."""
-
-    obj['speech'] = {'text': response}
+    os.remove(FILE_RUNS_LOCK)
 
 def save_last_response(s):
     """
@@ -77,46 +76,17 @@ def get_params(obj):
 
     return ret_val
 
-def get_intent(obj):
-    """Extract and return intent (name) from given object."""
-
-    return obj['intent']['name']
-
-def get_obj(s):
-    """Create and return input/output object from given string."""
-
-    return json.loads(s)    
-
-def retrieve_input():
-    """Return string which is the input to this intent handler."""
-
-    return sys.stdin.read()
-
-def try_lock_running():
-    """Tries to set is-running-lock. Returns, if successful or not."""
-
-    try:
-        with open(FILE_RUNS_LOCK, 'x'):
-            return True
-    except:
-        return False # File seems to already exist.
-
-def unlock_running():
-    """Unlocks the is-running-lock."""
-
-    os.remove(FILE_RUNS_LOCK)
-
 def exec_with_obj(obj):
     """ 
     Get input from parameter (object) and augment that object with the 
     response. Also saves that response as last response to a file.
     """
 
-    intent = get_intent(obj)
+    intent = obj['intent']['name']
     params = get_params(obj)
     response = responder.exec(intent, params)
 
-    add_response(response, obj)
+    obj['speech'] = {'text': response} # Augments in-/output obj. with response.
     
     save_last_response(response)
 
@@ -124,21 +94,21 @@ def exec_with_str(input_str):
     """Get input from parameter (string) and return response as string."""
 
     ret_val = None
-    obj = get_obj(input_str)
+    obj = json.loads(input_str)
 
     exec_with_obj(obj)
 
-    ret_val = get_output(obj)
+    ret_val = json.dumps(obj)
 
     return ret_val
 
 def exec_with_std():
     """Retrieve input from stdin and send response to stdout."""
 
-    input_str = retrieve_input()
+    input_str = sys.stdin.read()
     output_str = exec_with_str(input_str)
 
-    send_output(output_str)
+    print(output_str)
 
 def main():
     if not try_lock_running():
@@ -151,4 +121,5 @@ def main():
 
     unlock_running()
 
-main()
+if __name__ == "__main__":
+    main()
