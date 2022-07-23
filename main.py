@@ -103,20 +103,27 @@ def unlock_running():
 
     os.remove(FILE_RUNS_LOCK)
 
-def exec_with_std():
-    """Retrieve input from stdin and send response to stdout."""
+def exec_with_str(input_str):
+    """Get input from parameter (string) and return response as string."""
 
-    input_str = retrieve_input()
     obj = get_obj(input_str)
     intent = get_intent(obj)
     params = get_params(obj)
     response = responder.exec(intent, params)
-    output_str = None
+    ret_val = None
 
     add_response(response, obj)
-    output_str = get_output(obj)
+    ret_val = get_output(obj)
 
     save_last_response(response)
+
+    return ret_val
+
+def exec_with_std():
+    """Retrieve input from stdin and send response to stdout."""
+
+    input_str = retrieve_input()
+    output_str = exec_with_str(input_str)
 
     send_output(output_str)
 
