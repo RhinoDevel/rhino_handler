@@ -5,7 +5,7 @@ import os
 import importlib
 import importlib.util
 
-import intents
+import responder.intents
 
 INTENT_UNKNOWN = 'unknown' # Default for unknown intent.
 ERR_MSG_ON_EXCEPTION = 'Entschuldigung, es ist ein Ausnahmefehler aufgetreten.'
@@ -59,7 +59,7 @@ def load_last_response():
     return ret_val
 
 def get_module_path(intent):
-    return intents.__name__ + '.' + intent.lower()
+    return responder.intents.__name__ + '.' + intent.lower()
 
 def exec_without_lock(intent, params):
     """

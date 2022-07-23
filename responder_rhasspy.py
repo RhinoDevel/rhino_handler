@@ -15,7 +15,7 @@
 import json
 import sys
 
-import responder
+from responder import responder
 
 def get_params(obj):
     """Extract and return (intent) parameters from given object."""
@@ -34,7 +34,10 @@ def exec_with_obj(obj):
 
     intent = obj['intent']['name']
     params = get_params(obj)
-    response = responder.exec(intent, params) # (augments parameters object)
+
+    response = responder.exec(intent, params)
+    #
+    # (augments parameters object)
 
     obj['speech'] = {'text': response} # Augments in-/output obj. with response.
 
