@@ -103,7 +103,9 @@ def unlock_running():
 
     os.remove(FILE_RUNS_LOCK)
 
-def exec():
+def exec_with_std():
+    """Retrieve input from stdin and send response to stdout."""
+
     input_str = retrieve_input()
     obj = get_obj(input_str)
     intent = get_intent(obj)
@@ -123,7 +125,7 @@ def main():
         return # No return value at all. Is this OK?
 
     try:
-        exec()
+        exec_with_std()
     except:
         pass # Maybe no return value at all. Is this OK?
 
