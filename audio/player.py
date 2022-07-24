@@ -88,3 +88,6 @@ def play(location):
     # 
     process = None
                    
+# There may be a PID file from before last reboot, just delete it:
+#
+delete_running_pid()
