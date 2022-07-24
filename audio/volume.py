@@ -35,3 +35,9 @@ def increase():
 
 def decrease():
     decrease_by(DEFAULT_STEP)
+
+def mute():
+    set_from_str('mute')
+
+def unmute():
+    set_from_str('unmute')
