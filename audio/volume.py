@@ -3,7 +3,7 @@
 
 import subprocess
 
-DEFAULT_STEP = 10 # percent
+DEFAULT_STEP = 20 # percent
 
 def set_from_str(s):
     """
