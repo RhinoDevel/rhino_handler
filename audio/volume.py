@@ -12,7 +12,7 @@ def set_from_str(s):
     """
 
     subprocess.run(
-            ['amixer', 'set', 'Master', s],
+            ['amixer', '-c0', 'set', 'Headphone', s],
             stdin = subprocess.DEVNULL,
             stdout = subprocess.DEVNULL,
             stderr = subprocess.DEVNULL
