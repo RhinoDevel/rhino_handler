@@ -17,9 +17,12 @@ def try_lock_running():
         return False # File seems to already exist.
 
 def delete_running_pid():
-    """Removes the running-PID file."""
+    """Removes the running-PID file. Does not matter, if file exists or not."""
 
-    os.remove(FILE_RUNS_PID)
+    try:
+        os.remove(FILE_RUNS_PID)
+    except FileNotFoundError:
+        pass
 
 def save_running_pid(pid):
     """
