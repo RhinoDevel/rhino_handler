@@ -28,7 +28,8 @@ DE_MONTHS = [
         'August',
         'September',
         'Oktober',
-        'November','Dezember'
+        'November',
+        'Dezember'
     ]
 
 def exec(params):
