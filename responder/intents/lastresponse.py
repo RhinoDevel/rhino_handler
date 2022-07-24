@@ -5,7 +5,7 @@ import mt.str
 
 def exec(params):
     if params['last_response'] is None:
-        return 'Ich habe doch noch gar nichts gesagt!'
+        return 'Ich habe doch gar nichts gesagt.'
     
     assert(mt.str.is_nonwhitespace(params['last_response']))
 
