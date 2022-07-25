@@ -27,7 +27,7 @@ def _unlock_running():
     os.remove(FILE_RUNS_LOCK)
 
 def _wait_for_lock_running():
-    while not _try_lock_running():
+    while not _try_lock_running(): # TODO: Add a timeout and exception!
         sleep(0.5) # seconds (at least).
 
 def _get_default():
