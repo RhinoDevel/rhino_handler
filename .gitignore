@@ -3,3 +3,4 @@ mt/__pycache__
 intents/__pycache__
 last_response.txt
 audio_player.pid
+config.json

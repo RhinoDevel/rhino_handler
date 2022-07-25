@@ -5,9 +5,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 import responder_rhasspy
-
-ADDR = '127.0.0.1' # Use this in an intranet, only (no security stuff at all).
-PORT = 7581
+import config
 
 class MtHttpHandler(BaseHTTPRequestHandler):
     def _set_headers(self):
@@ -25,7 +23,9 @@ class MtHttpHandler(BaseHTTPRequestHandler):
         self.wfile.write(response_body.encode('utf8'))
 
 def exec():
-    httpd = HTTPServer((ADDR, PORT), MtHttpHandler)
+    c = config.get()
+
+    httpd = HTTPServer((c['addr'], c['port']), MtHttpHandler)
 
     httpd.serve_forever()
 
