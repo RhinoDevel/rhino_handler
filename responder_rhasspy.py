@@ -23,10 +23,7 @@ def get_params(obj):
     return ret_val
 
 def exec_with_obj(obj):
-    """ 
-    Get input from parameter (object) and augment that object with the 
-    response.
-    """
+    """Get input from parameter and augment that object with the response."""
 
     intent = obj['intent']['name']
     params = get_params(obj)

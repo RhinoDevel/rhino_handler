@@ -25,8 +25,8 @@ def delete_running_pid():
         pass
 
 def save_running_pid(pid):
-    """
-    Tries to save the given process ID to the running-PID file.
+    """Tries to save the given process ID to the running-PID file.
+    
     Throws an exception, if saving fails (e.g. file already exists).
     """
 
@@ -34,10 +34,9 @@ def save_running_pid(pid):
         f.write(str(pid))
 
 def load_running_pid():
-    """
-    Tries to load the process ID of a currently running audio player from
-    file. Returns None, if not found, which is interpreted as no audio player
-    running.
+    """Tries to load the process ID of a currently running player from file.
+    
+    Returns None, if not found, which is interpreted as no audio player running.
     """
  
     ret_val = None

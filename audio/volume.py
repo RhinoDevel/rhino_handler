@@ -6,9 +6,10 @@ import subprocess
 DEFAULT_STEP = 20 # percent
 
 def set_from_str(s):
-    """
-    Set master volume to value given as string (can be something like '5%-"
-    to e.g. lower the volume, too - see amixer man. page).
+    """Set master volume to value given as string.
+    
+    Also can be something like '5%-" to e.g. lower the volume, too
+    - see amixer man. page).
     """
 
     subprocess.run(

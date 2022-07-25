@@ -28,9 +28,9 @@ def unlock_running():
     os.remove(FILE_RUNS_LOCK)
 
 def save_last_response(s):
-    """
-    Tries to save the given string to the last-response file. Nothing happens,
-    if saving fails.
+    """Tries to save the given string to the last-response file.
+    
+    Nothing happens, if saving fails.
     """
 
     try:
@@ -59,8 +59,8 @@ def get_module_path(intent):
     return responder.intents.__name__ + '.' + intent.lower()
 
 def exec_without_lock(intent, params):
-    """
-    Get intent (name) and parameters (dictionary), return response string.
+    """Get intent (name) and parameters (dictionary), return response string.
+    
     Augments given parameters object with last-response property.
     Additionally saves response to last-response file.
     """
