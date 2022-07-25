@@ -2,6 +2,8 @@ __pycache__
 mt/__pycache__
 intents/__pycache__
 last_response.txt
+responder.lock
 audio_player.pid
 config.json
 timer.json
+timer.lock
