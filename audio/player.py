@@ -7,15 +7,6 @@ import subprocess
 
 FILE_RUNS_PID = 'audio_player.pid'
 
-def try_lock_running():
-    """Tries to set is-running-lock. Returns, if successful or not."""
-
-    try:
-        with open(FILE_RUNS_PID, 'x'):
-            return True
-    except:
-        return False # File seems to already exist.
-
 def delete_running_pid():
     """Removes the running-PID file. Does not matter, if file exists or not."""
 
