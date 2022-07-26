@@ -2,12 +2,14 @@
 
 # Marcel Timm, RhinoDevel, 2022jul25
 
+# Notes:
+#
+# - Creating IDs for the timer entries is probably not necessary.
+
 import json
 import random
 import os
 from time import time, localtime, sleep
-
-from config import get
 
 FILE_NAME = 'timer.json'
 FILE_RUNS_LOCK = 'timer.lock'
@@ -101,12 +103,27 @@ def exec():
     May be running in parallel with some add function, hence the lock mechanism.
     """
 
+    k = None # To hold an ID of a timer entry.
+    v = None # To hold a timer entry.
+    o = None # To hold the timer dictionary (stored on disk).
+    t = None # To hold the current time(-stamp).
+    r = [] # To hold the to-be-removed timer entries' IDs (because they are
+           # due).
+
     _wait_for_lock_running()
 
+    t = time()
     o = _get()
 
-    # TODO: Implement!
+    for k in o:
+        v = o[k]
+        if v['timestamp'] < t:
+            print(k + ': "' + v['msg'] + '"') # TODO: Replace with something that makes sense!
+            r.append(k)
 
+    for k in r:
+        o.pop(k)
+    
     _set(o)
 
     _unlock_running()
