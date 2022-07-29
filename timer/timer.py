@@ -1,4 +1,3 @@
-#!/usr/bin/python
 
 # Marcel Timm, RhinoDevel, 2022jul25
 
@@ -97,10 +96,11 @@ def add_minutes(msg, minutes):
 def add_hours(msg, hours):
     return add_minutes(msg, 60.0 * hours)
 
-def exec():
+def exec(on_alert):
     """This is to be run by a cron job.
     
-    May be running in parallel with some add function, hence the lock mechanism.
+    May be running in parallel with some add function, hence the locking
+    mechanism.
     """
 
     k = None # To hold an ID of a timer entry.
@@ -118,7 +118,7 @@ def exec():
     for k in o:
         v = o[k]
         if v['timestamp'] < t:
-            print(k + ': "' + v['msg'] + '"') # TODO: Replace with something that makes sense!
+            on_alert(v['msg'])
             r.append(k)
 
     for k in r:
@@ -127,6 +127,3 @@ def exec():
     _set(o)
 
     _unlock_running()
-
-if __name__ == "__main__":
-    exec()
