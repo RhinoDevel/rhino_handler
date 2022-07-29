@@ -7,8 +7,10 @@ FILE_NAME = 'config.json'
 
 def _get_default():
     return {
-        'addr': 'pi4.fritz.box', # HTTP server's address.
-        'port': 7581             # HTTP server's port.
+        'addr': 'pi4.fritz.box',         # HTTP server's address.
+        'port': 7581,                    # HTTP server's port.
+        'rhasspy_addr': 'pi4.fritz.box', # Rhasspy server's address.
+        'rhasspy_port': 12101            # Rhasspy server's port.
     }
 
 def _try_load():
