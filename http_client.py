@@ -18,7 +18,7 @@ def send():
             'curl',
             '-X', 'POST',
             c['addr'] + ':' + str(c['port']),
-            '-H', '"Content-Type: application/json"',
+            '-H', 'Content-Type: application/json',
             '-d', d
         ])
 
