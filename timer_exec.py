@@ -7,6 +7,8 @@ import subprocess
 import config
 from timer import timer
 
+REPEATS = 2
+
 def _on_alert(msg):
     """Call this function for each timer that is due."""
 
@@ -20,12 +22,16 @@ def _on_alert(msg):
             '-H', 'Content-Type: text/plain',
             '-d', msg
         ]
+    i = 0
 
-    subprocess.run(
-        a,
-        stdin = subprocess.DEVNULL,
-        stdout = subprocess.DEVNULL,
-        stderr = subprocess.DEVNULL)
+    while i < REPEATS:
+        subprocess.run(
+            a,
+            stdin = subprocess.DEVNULL,
+            stdout = subprocess.DEVNULL,
+            stderr = subprocess.DEVNULL)
+
+        i = i + 1
 
 if __name__ == "__main__":
     timer.exec(_on_alert)
