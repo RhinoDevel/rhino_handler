@@ -16,11 +16,9 @@ from responder import responder
 def get_params(obj):
     """Extract and return (intent) parameters from given object."""
 
-    ret_val = {}
-
-    # TODO: Implement adding parameters from input object!
-
-    return ret_val
+    # TODO: This is stupid or not?
+    #
+    return json.loads(json.dumps(obj))
 
 def exec_with_obj(obj):
     """Get input from parameter and augment that object with the response."""
