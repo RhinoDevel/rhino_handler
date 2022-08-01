@@ -3,6 +3,7 @@
 # Marcel Timm, RhinoDevel, 2022jul29
 
 import subprocess
+import os
 
 import config
 from timer import timer
@@ -13,6 +14,9 @@ def _on_alert(msg):
     """Call this function for each timer that is due."""
 
     c = config.get()
+
+    os.chdir(c['working_dir'])
+
     a = [
             'curl',
             '-X', 'POST',
