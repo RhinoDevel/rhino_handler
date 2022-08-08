@@ -7,7 +7,6 @@ FILE_NAME = 'config.json'
 
 def _get_default():
     return {
-        'working_dir': '~/rhino_handler', # Working directory.
         'addr': 'pi4.fritz.box',          # HTTP server's address.
         'port': 7581,                     # HTTP server's port.
         'rhasspy_addr': 'pi4.fritz.box',  # Rhasspy server's address.
